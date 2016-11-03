@@ -28,6 +28,9 @@ func getAddr() string {
 }
 
 func main() {
+	for _, x := range os.Environ() {
+		log.Println("ENVIRON", x)
+	}
 	http.Handle("/", http.FileServer(http.Dir("assets")))
 	addr := getAddr()
 	log.Printf("Listening on %s", addr)
