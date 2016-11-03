@@ -35,6 +35,7 @@ func main() {
 	addr := getAddr()
 	log.Printf("Listening on %s", addr)
 	http.HandleFunc("/cool", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/html")
 		w.Write([]byte(
 			`<DOCTYPE html>
 <html>
