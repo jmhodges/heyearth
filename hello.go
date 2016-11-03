@@ -31,6 +31,19 @@ func main() {
 	http.Handle("/", http.FileServer(http.Dir("assets")))
 	addr := getAddr()
 	log.Printf("Listening on %s", addr)
+	http.HandleFunc("/cool", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte(
+			`<DOCTYPE html>
+<html>
+<head>
+<title>You're cool.</title>
+</head>
+<body>
+<h2>You seem cool and nice</h2>
+</body>
+</html>
+`))
+	})
 	if err := http.ListenAndServe(addr, withLogs(http.DefaultServeMux)); err != nil {
 		log.Fatal(err)
 	}
